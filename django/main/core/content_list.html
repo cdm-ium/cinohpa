@@ -1,0 +1,50 @@
+{% load misc_extras %}
+{% if items %}
+        {% for entry in items  %}
+            {%if entry.typ == "graphic"%}
+            <div class="entry">
+                <p>
+                <a href="{{ entry.location|contenturl }}">
+                {{entry.title}}</a> 
+                </p>
+
+                <object data="{{ entry.location|contenturl }}" width=300
+                type="image/png">
+                </object> 
+            </div>
+            {% endif %} 
+            {% if entry.typ == "poem"%}
+            <div class="entry">
+                <div class="name">
+                    {{entry.title}}
+                </div>
+                <div class="text">
+                    {{entry.summary|safe}}
+                </div>
+            </div>
+            {% endif %}
+            {% if entry.typ == "test"%}
+            <div class="entry">
+                <p class="name">
+                    {{entry.title}}
+                </p>
+                <p>
+                    {{entry.summary|safe}}
+                </p>
+            </div>
+            {% endif %}
+
+            {% if entry.typ == "quotation"%}
+            <div class="entry">
+               <p>
+                    {{entry.summary|safe}}
+                </p>
+            </div>
+            {% endif %}
+
+        {% endfor %}
+    {% endif %}
+
+    <div id="content-list-end"></div>
+    </div>
+    
